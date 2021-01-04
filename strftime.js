@@ -1,4 +1,32 @@
-/drive_d/work/snipets/js/strftime.js
+/* Port of strftime(). Compatibility notes:
+ *
+ * %c - formatted string is slightly different
+ * %D - not implemented (use "%m/%d/%y" or "%d/%m/%y")
+ * %e - space is not added
+ * %E - not implemented
+ * %h - not implemented (use "%b")
+ * %k - space is not added
+ * %n - not implemented (use "\n")
+ * %O - not implemented
+ * %r - not implemented (use "%I:%M:%S %p")
+ * %R - not implemented (use "%H:%M")
+ * %t - not implemented (use "\t")
+ * %T - not implemented (use "%H:%M:%S")
+ * %U - not implemented
+ * %W - not implemented
+ * %+ - not implemented
+ * %% - not implemented (use "%")
+ *
+ * strftime() reference:
+ * http://man7.org/linux/man-pages/man3/strftime.3.html
+ *
+ * Day of year (%j) code based on Joe Orost's answer:
+ * http://stackoverflow.com/questions/8619879/javascript-calculate-the-day-of-the-year-1-366
+ *
+ * Week number (%V) code based on Taco van den Broek's prototype:
+ * http://techblog.procurios.nl/k/news/view/33796/14863/calculate-iso-8601-week-and-year-in-javascript.html
+ */
+ 
 function strftime(sFormat, date) {
   if (!(date instanceof Date)) date = new Date();
   var nDay = date.getDay(),
@@ -84,7 +112,7 @@ var createTime = new Date();
 var str2 = strftime('%d-%m-%Y %H:%M:%S', createTime);
 // Returns "15-09-2016 16:20"
 var str1 = strftime('%d-%m-%Y %H:%M', t1);
-var str2 = strftime('%d-%m-%Y %H:%M:%S', t2);
+var str2 = strftime('%d-%m-%Y %H:%M:%S', new Date());
 
 
 print(t1, str1)
